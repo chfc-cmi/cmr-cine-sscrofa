@@ -16,3 +16,23 @@ Both images and segmentation masks are also provided in png format with a unifie
 #### DICOM to png
 
 DICOM files are converted to png using the program `dcm2pnm`, the naming of png files is derived from the DICOM folder structure and file names. All steps are bundled in the script `code/dcm_to_png.sh`
+
+#### Contour to png
+
+The conversion is done in two steps. First the con files are converted to tsv files (and a resolution.tsv file is created with number of columns, rows and slices per measurement). This is done using `code/con_to_tsv.sh`.
+Then these tsv files are converted to png (filling implicitly missing slices but not missing timepoints/frames with empty masks).
+
+### Quality control
+
+A check that the number of slices per measurement are the same for the images as the masks revealed the following inconsistencies:
+
+```zsh
+paste data/intermediate/masks/obs0_rep0/resolution.tsv <(echo image_slices;ls data/png/images/A*_slice0*_frame000* | cut -f1 -d "_" | cut -f4 -d"/" | uniq -c) | awk '$4 != $5'
+# id	columns	rows	slices	image_slices
+# A12	800	752	13	     12 A12
+# A29	752	800	16	     14 A29
+# A31	540	576	9	     11 A31
+# A43	752	800	12	     13 A43
+```
+
+This needs to be checked and corrected.
