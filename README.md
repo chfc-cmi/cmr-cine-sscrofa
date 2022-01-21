@@ -36,3 +36,19 @@ paste data/intermediate/masks/obs0_rep0/resolution.tsv <(echo image_slices;ls da
 ```
 
 This needs to be checked and corrected.
+
+Checking the repeated labels from observer 0 shows discrepancies:
+
+```zsh
+diff data/intermediate/masks/obs0_rep[01]/resolution.tsv
+# 2c2,4
+# < A05	752	800	11
+# ---
+# > A03	540	576	13
+# > A04	540	576	12
+# > A05	540	576	11
+# 9a12
+# > A14	540	576	15
+```
+
+So the masks for A05 have the wrong resolution in the repeat and A03, A04, and A14 have not previously been labeled (and the images are not included).
