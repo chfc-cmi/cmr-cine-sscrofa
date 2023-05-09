@@ -12,3 +12,8 @@ do
 		dcm2pnm --write-png --use-window 1 $i data/png/images/$out
 	done
 done
+
+# remove non-ES and non-ED labels by intersecting all observers
+# quality of manual segmentation is only guaranteed for these timepoints
+# thus, only these should be used
+\ls data/png/masks/* | sort | uniq -c | awk '$1!=3 {print $2}' | grep mask.png | perl -pe '$_="rm data/png/masks/*/".$_' | bash
