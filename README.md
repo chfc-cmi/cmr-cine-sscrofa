@@ -2,6 +2,7 @@
 
 This is a data set with end-systolic and end-diastolic CMR CINE images of 11 individual pigs at 4 time points. Some of them received a treatment (induced myocardial infarction), others did not (control). See [`data/metadata/measurements.tsv`](./data/metadata/measurements.tsv).
 
+This is a [DataLad](https://handbook.datalad.org/en/latest/) repository. You can clone the repository with plain `git`, but we recommend using `datalad`. After cloning all data files are just symlinks. In order to get the actual data, download the archive at zenodo: https://doi.org/10.5281/zenodo.7684034, unpack it and add it as a sibling. Then use `datalad get` to get the actual content of the files.
 
 ## Data
 
@@ -12,6 +13,8 @@ The raw data is provided in the form of DICOM files and Contour files (format us
 ### Conversion to png
 
 Both images and segmentation masks are also provided in png format with a unified naming scheme.
+
+For reproducibility, the conversion steps are documented below.
 
 #### DICOM to png
 
