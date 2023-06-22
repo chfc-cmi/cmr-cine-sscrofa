@@ -15,7 +15,7 @@ Both images and segmentation masks are also provided in png format with a unifie
 
 #### DICOM to png
 
-DICOM files are converted to png using the program [`code/dcm2pnm`](./code/dcm2pnm), the naming of png files is derived from the DICOM folder structure and file names. All steps are bundled in the script `code/dcm_to_png.sh`
+DICOM files are converted to png using the program [`code/dcm2pnm`](https://support.dcmtk.org/docs/dcm2pnm.html), the naming of png files is derived from the DICOM folder structure and file names. All steps are bundled in the script [`code/dcm_to_png.sh`](./code/dcm_to_png.sh).
 
 #### Contour to png
 
